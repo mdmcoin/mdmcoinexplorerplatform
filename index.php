@@ -1,7 +1,9 @@
 <?php
-
 namespace w8io;
 require_once 'config.php';
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 $z = (int)( $_COOKIE['z'] ?? 180 ); // TIMEZONE
 
@@ -115,7 +117,7 @@ if( $address === 'top' && $f !== false )
             exit( header( 'location: ' . W8IO_ROOT . 'top/' . $f ) );
     }
 
-    $aid = $f === 'Waves' ? 0 : $RO->getIdByAsset( $f );
+    $aid = $f === 'MDMCOIN' ? 0 : $RO->getIdByAsset( $f );
     if( $aid !== false )
     {
         $info = $RO->getAssetInfoById( $aid );
@@ -339,8 +341,8 @@ function w8io_print_transactions( $aid, $where, $uid, $count, $address, $d )
                 $sign = ( ( $type === TX_LEASE_CANCEL || $type === ITX_LEASE_CANCEL ) ? -1 : 1 ) * ( ( $amount < 0 ) ? -1 : 1 ) * ( $isb ? ( $isa ? 0 : 1 ) : -1 );
 
                 $amount = ' ' . w8io_sign( $sign ) . w8io_amount( $amount, 8, 0, false );
-                $asset = ' <a href="' . W8IO_ROOT . $address . '/f/Waves">Waves</a>';
-                $assetname = 'Waves';
+                $asset = ' <a href="' . W8IO_ROOT . $address . '/f/MDMCOIN">MDMCOIN</a>';
+                $assetname = 'MDMCOIN';
                 $assetId = WAVES_ASSET;
                 $reclen = strlen( $amount ) + 5;
             }
@@ -368,9 +370,9 @@ function w8io_print_transactions( $aid, $where, $uid, $count, $address, $d )
             }
             else
             {
-                $feename = 'Waves';
+                $feename = 'MDMCOIN';
                 $feeamount = w8io_amount( $fee, 8, 0 );
-                $fee = ' <small>' . w8io_amount( $fee, 8, 0 ) . ' <a href="' . W8IO_ROOT . $address . '/f/Waves">Waves</a></small>';
+                $fee = ' <small>' . w8io_amount( $fee, 8, 0 ) . ' <a href="' . W8IO_ROOT . $address . '/f/MDMCOIN">MDMCOIN</a></small>';
             }
         }
         else
@@ -806,11 +808,11 @@ if( $address === 'GENERATORS' )
 
         $topad = str_pad( $to, 7, ' ', STR_PAD_LEFT );
         $periodpad = str_pad( $period, 4, ' ', STR_PAD_LEFT );
-        echo "GENERATORS ( ~ $periodpad ) @ <b>$topad</b> <small>($totime)</small><hr>";
+        echo "GENERATORS ( ~ $periodpad ) @ <b> $topad</b> <small>($totime)</small><hr>";
     }
     else
     {
-        echo "GENERATORS ( ~ $period ) @ $to <small>($totime)</small><hr>";
+        echo "GENERATORS ( ~ $period ) @  $to <small>($totime)</small><hr>";
     }
 
     $generators = $infos;
@@ -903,7 +905,7 @@ else
         if( $f[0] === 'f' )
         {
             {
-                if( $arg === 'Waves' )
+                if( $arg === 'MDMCOIN' )
                     $arg = 0;
                 else
                 if( is_numeric( $arg ) )
@@ -1009,7 +1011,7 @@ else
                     if( !isset( $args[1] ) || !isset( $args[2] ) )
                         exit( 'not enough assets' );
 
-                    if( $args[1] === 'WAVES' )
+                    if( $args[1] === 'MDMCOIN' )
                     {
                         $asset1 = WAVES_ASSET;
                     }
@@ -1020,7 +1022,7 @@ else
                             exit( 'unknown asset1' );
                     }
 
-                    if( $args[2] === 'WAVES' )
+                    if( $args[2] === 'MDMCOIN' )
                     {
                         $asset2 = WAVES_ASSET;
                     }
@@ -1120,16 +1122,16 @@ else
         $weights = [];
         $prints = [];
 
-        // WAVES
+        // MDMCOIN
         {
-            $asset = "Waves";
+            $asset = "MDMCOIN";
             $amount = w8io_amount( $balance[0], 8 );
-            $furl = W8IO_ROOT . $address . '/f/Waves';
+            $furl = W8IO_ROOT . $address . '/f/MDMCOIN';
 
             if( $arg === 0 && $filter === 1 )
             {
-                echo '<b>' . $amount . ' <a href="' . W8IO_ROOT . 'top/Waves">' . $asset . '</a></b>';
-                echo ' <small><a href="' . W8IO_ROOT . $address . '/fi/Waves">i</a><a href="' . W8IO_ROOT . $address . '/fo/Waves">o</a></small>' . PHP_EOL;
+                echo '<b>' . $amount . ' <a href="' . W8IO_ROOT . 'top/MDMCOIN">' . $asset . '</a></b>';
+                echo ' <small><a href="' . W8IO_ROOT . $address . '/fi/MDMCOIN">i</a><a href="' . W8IO_ROOT . $address . '/fo/MDMCOIN">o</a></small>' . PHP_EOL;
                 echo '<span>' . str_repeat( '—', 39 ) . '&nbsp;</span>' .  PHP_EOL;
             }
             else
@@ -1145,7 +1147,7 @@ else
 
             if( $balance[0] !== $amount )
             {
-                $asset = "Waves (GENERATOR)";
+                $asset = "MDMCOIN (GENERATOR)";
                 $amount = w8io_amount( $amount, 8 );
 
                 $weights[WAVES_LEASE_ASSET] = 1000;
@@ -1285,7 +1287,7 @@ else
 
                 echo "pay ($from .. $to) ($percent %):" . PHP_EOL . PHP_EOL;
                 echo w8io_amount( $waves_blocks, 0 ) . ' Blocks' . PHP_EOL;
-                echo w8io_amount( $waves_fees, 8 ) . " Waves" . PHP_EOL;
+                echo w8io_amount( $waves_fees, 8 ) . " MDMCOINs" . PHP_EOL;
 
                 $payments = [];
                 foreach( $incomes as $a => $p )
@@ -1308,7 +1310,7 @@ else
                     if( $n === 0 )
                     {
                         $m++;
-                        echo "    Mass (Waves) #$m:" . PHP_EOL;
+                        echo "    Mass (MDMCOINs) #$m:" . PHP_EOL;
                         echo "    ------------------------------------------------------------" . PHP_EOL;
                     }
                     $address = $RO->getAddressById( $a );
@@ -1340,11 +1342,11 @@ if( !isset( $L ) )
 
 echo '</pre></td></tr></table>';
 echo '<hr><div width="100%" align="right"><pre><small>';
-echo "<a href=\"https://github.com/deemru/w8io\">github/deemru/w8io</a>";
+echo "<a href=\"https://github.com/mdmcoin/mdmcoinexplorerplatform\">github.com/mdmcoin/mdmcoinexplorerplatform</a>";
 if( file_exists( '.git/FETCH_HEAD' ) )
 {
     $rev = file_get_contents( '.git/FETCH_HEAD', false, null, 0, 40 );
-    echo "/<a href=\"https://github.com/deemru/w8io/commit/$rev\">" . substr( $rev, 0, 7 ) . '</a> ';
+    echo "/<a href=\"github.com/mdmcoin/mdmcoinexplorerplatform/commit/$rev\">" . substr( $rev, 0, 7 ) . '</a> ';
 }
 if( !isset( $showtime ) )
 {
