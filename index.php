@@ -177,25 +177,39 @@ function prolog()
     global $L;
 
     $L = (int)( $_COOKIE['L'] ?? 0 ) === 1;
-    echo sprintf( '
+ 
+   echo sprintf("
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="format-detection" content="date=no">
-        <meta name="format-detection" content="address=no">
-        <meta name="format-detection" content="email=no">
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+        <meta name='format-detection' content='telephone=no'>
+        <meta name='format-detection' content='date=no'>
+        <meta name='format-detection' content='address=no'>
+        <meta name='format-detection' content='email=no'>
         <title>%s</title>
-        <link rel="shortcut icon" href="/static/favicon8.ico" type="image/x-icon">
-        <link rel="stylesheet" href="/static/fonts.css">
-        <link rel="stylesheet" href="/static/static%s.css">
-        <script type="text/javascript" src="/static/jquery.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="/static/static.js" charset="UTF-8"></script>
+        <link rel='shortcut icon' href='/static/ico-mdmcoin.png' type='image/x-icon'>
+        <link rel='stylesheet' href='/static/fonts.css'>
+              
+        <link rel='stylesheet' href='/static/static%s.css'>
+        <script type='text/javascript' src='/static/jquery.js' charset='UTF-8'></script>
+        <script type='text/javascript' src='/static/bootstrap.min.js' charset='UTF-8'></script>
+        <script type='text/javascript' src='/static/static.js' charset='UTF-8'></script>
+        
+       
     </head>
+    <header>
+    <div style='text-align: center;'>
+    <a href='/'><img style='margin: auto;' src='/static/ico-mdmcoin.png' /></a>
+    <br />
+    Explorer Platform
+    <br />
+    
+    </div>
+    </header>
     <body>
         <pre>
-', empty( $address ) ? '' : ( 'w8 &#183; ' . prettyAddress( $address ) ), $L ? '-l' : '-n' );
+", empty( $address ) ? '' : ( 'MDMCOIN Explorer Platform &#183; ' . prettyAddress( $address ) ), $L ? '-l' : '-n' );
 }
 
 function w8io_print_distribution( $f, $aid, $info, $n )
