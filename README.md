@@ -3,6 +3,7 @@
 [MDMCOIN Explorer Platform]  MDMCOIN Explorer Platform blockchain explorer based on PHP and SQLite.
 
 ## Basic usage
+- composer install
 - first run (fast, minimal indexes): `php w8_updater.php`
 - indexer (after first run): `php w8_updater.php indexer`
 - run in background: `php w8_updater.php`
