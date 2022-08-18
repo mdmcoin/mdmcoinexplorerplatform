@@ -44,3 +44,5 @@ define( 'W8IO_UPDATE_DELAY', 1 );
 define( 'W8IO_UPDATE_PROCS', 1 );
 define( 'WK_CURL_TIMEOUT', 15 );
 define( 'W8IO_MAX_MEMORY', 1024 * 1024 * 1024 );
+define( 'W8IO_ASSET', 'MDMCOIN');
+define( 'W8IO_ASSETTICKER', 'MDM');
