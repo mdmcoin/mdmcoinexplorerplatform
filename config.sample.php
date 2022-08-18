@@ -40,7 +40,7 @@ define( 'W8IO_NODES', 'http://seed7.mdmcoin.net:7879|http://nodes.mdmcoin.com' )
 define( 'W8IO_NETWORK', 'M' ); // 'M' -- mainnet, 'T' -- testnet
 define( 'W8IO_ROOT', '/' );
 define( 'W8IO_MAX_UPDATE_BATCH', 1 ); // set more on when on a local node
-define( 'W8IO_UPDATE_DELAY', 1 );
+define( 'W8IO_UPDATE_DELAY', 15 );
 define( 'W8IO_UPDATE_PROCS', 1 );
 define( 'WK_CURL_TIMEOUT', 15 );
 define( 'W8IO_MAX_MEMORY', 1024 * 1024 * 1024 );
