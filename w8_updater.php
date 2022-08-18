@@ -254,7 +254,7 @@ function updater()
     $blockchain = new Blockchain( W8DB );
 
     $procs = defined( 'W8IO_UPDATE_PROCS' ) && W8IO_UPDATE_PROCS;
-    $sleep = defined( 'W8IO_UPDATE_DELAY') ? W8IO_UPDATE_DELAY : 17;
+    $sleep = defined( 'W8IO_UPDATE_DELAY') ? W8IO_UPDATE_DELAY : 20;
     $break = w8_upstats()['updater'] === false;
 
     for( ;; )
@@ -274,7 +274,7 @@ function updater()
         if( $procs )
         {
             procResetInfo( $blockchain->parser );
-            if( W8IO_NETWORK === 'W' )
+            if( W8IO_NETWORK === 'M' )
                 procScam( $blockchain->parser );
             procWeight( $blockchain, $blockchain->parser );
         }
