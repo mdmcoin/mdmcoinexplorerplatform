@@ -219,6 +219,7 @@ function w8io_print_distribution( $f, $aid, $info, $n )
 
     $decimals = ( $decimals = $info[0] ) === 'N' ? 0 : (int)$decimals;
     $asset = substr( $info, 2 );
+    if($asset=="Waves"){$asset=W8IO_ASSET;}
 
     $balances = $RO->db->query( 'SELECT * FROM balances WHERE r2 = ' . $aid . ' ORDER BY r3 DESC LIMIT ' . $n );
     $total = 0;
